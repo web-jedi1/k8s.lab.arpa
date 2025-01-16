@@ -4,7 +4,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   desc = "Kubernetes Master" # Description for the VM
   target_node = var.proxmox_host # Proxmox target node
 
-  clone_id = var.template_name  # The name of the template that this resource will be created from
+  clone = var.template_name  # The name of the template that this resource will be created from
 
   agent = 1 # is the qemu agent installed?
 
@@ -13,6 +13,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   cpu = "host" # The CPU type
   memory = 2048 # Amount of memory to allocate
   onboot = false # start the VM on host startup
+  os_type = "cloud-init"
 
   # if you want two NICs, just copy this whole network section and duplicate it
   network {
