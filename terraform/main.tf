@@ -4,7 +4,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   desc = "Kubernetes Master" # Description for the VM
   target_node = var.proxmox_host # Proxmox target node
 
-  clone = var.template_name  # The name of the template that this resource will be created from
+  clone_id = var.template_name  # The name of the template that this resource will be created from
 
   agent = 1 # is the qemu agent installed?
 

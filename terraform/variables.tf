@@ -17,8 +17,8 @@ variable "proxmox_host" {
 }
 
 variable "template_name" {
-  type = string
-  default = "debian-template"
+  type =  number
+  default = 9999
 }
 
 variable "ansible_user"{
