@@ -1,1 +1,1 @@
-# lab.arpa
+# k8s.lab.arpa
