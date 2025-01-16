@@ -32,7 +32,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
 
   # sshkeys set using variables. the variable contains the text of the key.
   sshkeys = <<EOF
-  ${var.ssh_key}
+  ${var.ssh_pub_key}
   EOF
 
   # Terraform has provisioners that allow the execution of commands / scripts on a local or remote machine.
