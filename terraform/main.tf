@@ -15,7 +15,6 @@ resource "proxmox_vm_qemu" "k8s-master" {
   os_type = "cloud-init"
 
   network {
-    id = 0
     model = "virtio"
     bridge = "vmbr1"
     tag = 2003
