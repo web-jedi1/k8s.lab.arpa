@@ -24,12 +24,12 @@ resource "proxmox_vm_qemu" "k8s-master" {
     tag = 2003
   }
 
-  #disk {
-  #  slot = "scsi0"
-  #  size = "50G"
-  #  type = "disk"
-  #  storage = "local-lvm"
-  #}
+  disk {
+#    slot = "scsi0"
+    size = "50G"
+    type = "virtio"
+    storage = "local-lvm"
+  }
 
   ipconfig0 = "ip=10.0.3.10/24,gw=10.0.3.1"
   nameserver = "10.0.2.2"
