@@ -33,7 +33,7 @@ variable "public_key_path"{
   type = string
 }
 
-variable "ssh_pub_key" {
+variable "terraform_pub_key" {
   type = string
 }
 

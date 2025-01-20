@@ -55,7 +55,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   ciuser = var.ciuser
   cipassword = var.cipassword
   sshkeys = <<EOF
-  ${var.ssh_pub_key}
+  ${var.terraform_pub_key}
   EOF
 
   provisioner "remote-exec" {
@@ -65,7 +65,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
       host        = "10.0.3.10"
       type        = "ssh"
       user        = var.ciuser
-      password    = var.cipassword
+      private_key    = file("/var/lib/jenkins/.ssh/terraform")
     }
   }
 }
