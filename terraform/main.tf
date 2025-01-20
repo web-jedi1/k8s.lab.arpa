@@ -4,6 +4,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   desc = "Kubernetes Master"
   target_node = var.proxmox_host
   clone = var.template_name  
+  full_clone = true
   count = 1
   vmid = "200${count.index + 1}"
   tags = "terraform,kubernetes,jammy,master"
@@ -25,6 +26,13 @@ resource "proxmox_vm_qemu" "k8s-master" {
   }
 
   disks {
+    ide {
+      ide2 {
+        cloudinit {
+          storage = "local-lvm"
+        }
+      }
+    }
     scsi {
       scsi0 {
         disk {
@@ -44,8 +52,8 @@ resource "proxmox_vm_qemu" "k8s-master" {
     type = "socket"
   }
 
-  #ciuser = var.ciuser
-  #cipassword = var.cipassword
+  ciuser = var.ciuser
+  cipassword = var.cipassword
   sshkeys = <<EOF
   ${var.ssh_pub_key}
   EOF
