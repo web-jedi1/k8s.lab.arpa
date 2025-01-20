@@ -23,7 +23,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
     tag = 2003
   }
 
-  ipconfig0 = "ip=10.0.3.10,gw=10.0.3.1"
+  ipconfig0 = "ip=10.0.3.10/24,gw=10.0.3.1"
   nameserver = "10.0.2.2"
   searchdomain = "lab.arpa"
 
