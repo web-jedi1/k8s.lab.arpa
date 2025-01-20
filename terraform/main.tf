@@ -30,8 +30,9 @@ resource "proxmox_vm_qemu" "k8s-master" {
     id = 0
     type = "socket"
   }
-  ssh_user = "manfred"
-  ssh_private_key = <<EOF
+  ciuser = var.ciuser
+  cipassword = var.cipassword
+  sshkeys = <<EOF
   ${var.ssh_pub_key}
   EOF
 

@@ -37,3 +37,10 @@ variable "ssh_pub_key" {
   type = string
 }
 
+variable "ciuser" {
+  type = string
+}
+
+variable "cipassword" {
+  type = string
+}
