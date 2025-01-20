@@ -23,7 +23,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   }
 
   disk {
-    slot = 0
+    slot = "scsi0"
     size = "50G"
     type = "scsi"
     storage = "local-lvm"
