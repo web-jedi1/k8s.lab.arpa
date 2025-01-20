@@ -14,6 +14,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   memory = 2048 
   onboot = false
   os_type = "cloud-init"
+  bootdisk = "scsi0"
 
   network {
     id = 0
@@ -25,7 +26,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   disk {
     slot = "scsi0"
     size = "50G"
-    type = "cloudinit"
+    type = "scsi"
     storage = "local-lvm"
   }
 
@@ -49,8 +50,8 @@ resource "proxmox_vm_qemu" "k8s-master" {
     connection {
       host        = "10.0.3.10"
       type        = "ssh"
-      user        = "manfred"
-      private_key = file(var.private_key_path)
+      user        = var.ciuser
+      password    = var.cipassword
     }
   }
 }
