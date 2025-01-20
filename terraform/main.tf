@@ -14,7 +14,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   memory = 2048 
   onboot = false
   os_type = "cloud-init"
-  bootdisk = "scsi0"
+  bootdisk = "ide0"
   scsihw = "virtio-scsi-pci"
 
   network {
