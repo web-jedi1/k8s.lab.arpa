@@ -44,8 +44,8 @@ resource "proxmox_vm_qemu" "k8s-master" {
     type = "socket"
   }
 
-  ciuser = var.ciuser
-  cipassword = var.cipassword
+  #ciuser = var.ciuser
+  #cipassword = var.cipassword
   sshkeys = <<EOF
   ${var.ssh_pub_key}
   EOF
