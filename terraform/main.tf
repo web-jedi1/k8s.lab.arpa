@@ -2,14 +2,13 @@ resource "proxmox_vm_qemu" "k8s-master" {
 
   name = "arpa-k8s-master-01"
   desc = "Kubernetes Master"
-  target_node = var.proxmox_host 
-
-  clone = var.template_name 
-
+  target_node = var.proxmox_host
+  clone = var.template_name  
+  count = 1
+  vmid = "200${count.index + 1}"
   tags = "terraform,kubernetes,jammy,master"
 
   agent = 1
-
   cores = 1
   sockets = 1
   memory = 2048 
@@ -21,6 +20,13 @@ resource "proxmox_vm_qemu" "k8s-master" {
     model = "virtio"
     bridge = "vmbr1"
     tag = 2003
+  }
+
+  disk {
+    slot = 0
+    size = "50G"
+    type = "scsi"
+    storage = "local-lvm"
   }
 
   ipconfig0 = "ip=10.0.3.10/24,gw=10.0.3.1"
