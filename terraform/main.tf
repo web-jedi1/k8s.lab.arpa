@@ -6,6 +6,8 @@ resource "proxmox_vm_qemu" "k8s-master" {
 
   clone = var.template_name 
 
+  tags = "terraform,kubernetes,jammy,master"
+
   agent = 1
 
   cores = 1
@@ -28,8 +30,8 @@ resource "proxmox_vm_qemu" "k8s-master" {
     id = 0
     type = "socket"
   }
-
-  sshkeys = <<EOF
+  ssh_user = "manfred"
+  ssh_private_key = <<EOF
   ${var.ssh_pub_key}
   EOF
 
