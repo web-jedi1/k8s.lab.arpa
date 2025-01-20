@@ -10,7 +10,6 @@ resource "proxmox_vm_qemu" "k8s-master" {
 
   cores = 1
   sockets = 1
-  cpu_type = "host"
   memory = 2048 
   onboot = false
   os_type = "cloud-init"
