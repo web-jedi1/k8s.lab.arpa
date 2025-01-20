@@ -14,7 +14,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
   memory = 2048 
   onboot = false
   os_type = "cloud-init"
-  bootdisk = "ide0"
+  bootdisk = "scsi0"
   scsihw = "virtio-scsi-pci"
 
   network {
@@ -24,12 +24,16 @@ resource "proxmox_vm_qemu" "k8s-master" {
     tag = 2003
   }
 
-#  disk {
-#    slot = "scsi0"
-#    size = "50G"
-#    type = "virtio"
-#    storage = "local-lvm"
-#  }
+  disks {
+    scsi {
+      scsi0 {
+        disk {
+          size = 50
+          storage = "local-lvm"
+        }
+      }
+    }
+  }
 
   ipconfig0 = "ip=10.0.3.10/24,gw=10.0.3.1"
   nameserver = "10.0.2.2"
