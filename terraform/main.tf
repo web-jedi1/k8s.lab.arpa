@@ -61,7 +61,7 @@ resource "proxmox_vm_qemu" "k8s-master" {
     inline = ["sudo apt update", "sudo apt upgrade -y", "sudo apt -y autoremove"]
 
     connection {
-      host        = "10.0.3.${count.index + 1}"
+      host        = "10.0.3.${count.index + 2}"
       type        = "ssh"
       user        = var.ciuser
       private_key    = file("/var/lib/jenkins/.ssh/terraform")
@@ -113,7 +113,7 @@ resource "proxmox_vm_qemu" "k8s-worker" {
     }
   }
 
-  ipconfig0 = "ip=10.0.3.${count.index + 2}/24,gw=10.0.3.1"
+  ipconfig0 = "ip=10.0.3.${count.index + 11}/24,gw=10.0.3.1"
   nameserver = "10.0.2.2"
   searchdomain = "lab.arpa"
 
