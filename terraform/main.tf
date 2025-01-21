@@ -76,7 +76,7 @@ resource "proxmox_vm_qemu" "k8s-worker" {
   target_node = var.proxmox_host
   clone = var.template_name  
   full_clone = true
-  vmid = "200${count.index + 1}"
+  vmid = "201${count.index + 1}"
   tags = "terraform,kubernetes,ubuntu-jammy,worker"
 
   agent = 1
